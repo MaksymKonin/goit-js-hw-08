@@ -2,18 +2,18 @@ import throttle from 'lodash.throttle';
 import Player from '@vimeo/player';
 const iframe = document.querySelector('iframe');
 const player = new Player(iframe);
-const LOCALSTORAGE_KEY = 'videoplayer-current-time';
+const LOCALSTORAGE_VIDEOPLAYER_KEY = 'videoplayer-current-time';
 
 const onPlay = function (data) {
   // data is an object containing properties specific to that event
-  localStorage.setItem(LOCALSTORAGE_KEY, data.seconds);
+  localStorage.setItem(LOCALSTORAGE_VIDEOPLAYER_KEY, data.seconds);
 };
 
 player.on('timeupdate', throttle(onPlay, 1000));
 window.addEventListener('DOMContentLoaded', onGotoTheLastView);
 
 function onGotoTheLastView() {
-  const seconds = localStorage.getItem(LOCALSTORAGE_KEY);
+  const seconds = localStorage.getItem(LOCALSTORAGE_VIDEOPLAYER_KEY);
   player
     .setCurrentTime(seconds)
     .then(function (seconds) {
