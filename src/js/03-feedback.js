@@ -25,12 +25,10 @@ function onFillFormSavedData() {
   if (dataSaveForm && dataSaveForm.email !== undefined) {
     inputEl.value = dataSaveForm.email;
     dataForm.email = dataSaveForm.email;
-    console.log(1);
   }
   if (dataSaveForm && dataSaveForm.message !== undefined) {
     textareaEl.value = dataSaveForm.message;
     dataForm.message = dataSaveForm.message;
-    console.log(dataSaveForm.message);
   }
 }
 
