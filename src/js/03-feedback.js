@@ -21,19 +21,28 @@ function onTextInput(evt) {
 
 function onFillFormSavedData() {
   const dataSaveForm = loadLocalStorage(LOCALSTORAGE_FORM_KEY);
-  if (dataSaveForm) {
+
+  if (dataSaveForm && dataSaveForm.email !== undefined) {
     inputEl.value = dataSaveForm.email;
-    textareaEl.value = dataSaveForm.message;
     dataForm.email = dataSaveForm.email;
+    console.log(1);
+  }
+  if (dataSaveForm && dataSaveForm.message !== undefined) {
+    textareaEl.value = dataSaveForm.message;
     dataForm.message = dataSaveForm.message;
+    console.log(dataSaveForm.message);
   }
 }
 
 function onFormSubmit(evt) {
   evt.preventDefault();
-  console.log(dataForm);
-  evt.currentTarget.reset();
-  localStorage.removeItem(LOCALSTORAGE_FORM_KEY);
+  if (inputEl.value === '' || textareaEl.value === '') {
+    alert(`Поле Email або Password пусті. Заповніть всі поля!`);
+  } else {
+    console.log(dataForm);
+    evt.currentTarget.reset();
+    localStorage.removeItem(LOCALSTORAGE_FORM_KEY);
+  }
 }
 
 function saveLocalStorage(key, value) {

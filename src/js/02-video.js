@@ -31,5 +31,3 @@ function onGotoTheLastView() {
       }
     });
 }
-
-// throttle(onPlay, 1000);
